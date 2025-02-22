@@ -1,0 +1,21 @@
+apiVersion: build.openshift.io/v1
+kind: BuildConfig
+metadata:
+  name: microservice-build
+  namespace: gowthamanprojects-dev
+spec:
+  source:
+    type: Binary
+    binary: {}
+  strategy:
+    type: Source
+    sourceStrategy:
+      from:
+        kind: DockerImage  # Changed from ImageStreamTag
+        name: registry.access.redhat.com/ubi8/openjdk-21:latest  # Raw Docker imageoc apply -f bc.yml -n gowthamanprojects-dev
+  output:
+    to:
+      kind: ImageStreamTag
+      name: microservice:latest
+  triggers:
+    - type: ConfigChange  # Rebuilds if BuildConfig changes

@@ -1,0 +1,38 @@
+apiVersion: apps.openshift.io/v1
+kind: DeploymentConfig
+metadata:
+  name: microservice
+  namespace: gowthamanprojects-dev
+spec:
+  replicas: 1
+  selector:
+    app: microservice
+  template:
+    metadata:
+      labels:
+        app: microservice
+    spec:
+      containers:
+        - name: microservice
+          image: image-registry.openshift-image-registry.svc:5000/gowthamanprojects-dev/microservice:latest
+          ports:
+            - containerPort: 8080
+              protocol: TCP
+          resources:
+            requests:
+              memory: "512Mi"
+              cpu: "250m"
+            limits:
+              memory: "1Gi"
+              cpu: "500m"
+  triggers:
+    - type: ConfigChange  # Redeploys if DeploymentConfig changes
+    - type: ImageChange  # Redeploys when the `microservice:latest` image updates
+      imageChangeParams:
+        automatic: true
+        containerNames:
+          - microservice
+        from:
+          kind: ImageStreamTag
+          name: microservice:latest
+          namespace: gowthamanprojects-dev
