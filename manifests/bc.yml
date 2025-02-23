@@ -19,3 +19,4 @@ spec:
       name: microservice:latest
   triggers:
     - type: ConfigChange  # Rebuilds if BuildConfig changes
+  completionDeadlineSeconds: 1200  # 20 minutes
