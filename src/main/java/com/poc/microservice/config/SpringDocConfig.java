@@ -6,6 +6,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springdoc.core.models.GroupedOpenApi;
 
+@Configuration
 public class SpringDocConfig {
     @Bean
     public GroupedOpenApi publicApi() {
@@ -19,8 +20,8 @@ public class SpringDocConfig {
     public OpenAPI customOpenAPI() {
         return new OpenAPI()
                 .info(new Info()
-                        .title("Resource API")
+                        .title("Microservice")
                         .version("0.0.1-SNAPSHOT")
-                        .description("API for managing resources"));
+                        .description("Microservice POC"));
     }
 }

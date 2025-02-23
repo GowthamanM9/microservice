@@ -3,8 +3,6 @@ server:
 
 springdoc:
   api-docs:
-    path: /v3/api-docs
+    path: /v3/api-docs/microservice
   swagger-ui:
     path: /swagger-ui.html
-    operations-sorter: alpha
-    tags-sorter: alpha
