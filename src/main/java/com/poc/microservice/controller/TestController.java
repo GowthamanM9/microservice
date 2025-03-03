@@ -13,7 +13,7 @@ public class TestController {
     }
 
     @GetMapping("/static-string")
-    public String getStaticString(@RequestHeader(value = "X-Auth-Token", required = false) String token) {
-        return "This is a static string after bc, dc and config yml changes. Token received: " + (token != null ? token : "none");
+    public String getStaticString(@RequestHeader(value = "X-Preferred-Username", required = false) String username) {
+        return "This is a static string after bc, dc and config yml changes. Username received: " + (username != null ? username : "none");
     }
 }
